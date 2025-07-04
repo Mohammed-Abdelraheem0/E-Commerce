@@ -38,6 +38,11 @@ namespace E_Commerce
             {
                 shippable = true;
             }
+            if (product.ExpireDate < DateTime.Now)
+            {
+                Console.WriteLine("Product is expired\n");
+                return;
+            }
             Product product1 = Products.FirstOrDefault(x => x.Name.ToLower() == name.ToLower());
             if (product1 == null) {
             product1= new Product()
@@ -49,12 +54,13 @@ namespace E_Commerce
                 Shippale = product.Shippale,
                 ExpireDate = product.ExpireDate,
                 Weight = product.Weight
-            }; }
+            };
+                Products.Add(product1);
+            }
             else
             {
                 product1.Quantity += quantity;
             }
-                Products.Add(product1);
             Store.reduceQuantity(product, quantity);
 
         }

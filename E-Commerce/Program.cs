@@ -87,6 +87,7 @@
             }
         static void Checkout(Customer customer, Cart cart)
         {
+            
             if (cart.Shippable)
             {
                 ShippingService shippingService = new ShippingService();
@@ -96,6 +97,7 @@
             double subtotal = 0;
             foreach (var product in cart.Products)
             {
+                
                 subtotal += product.Quantity * product.Price;
             }
             if (subtotal * 1.1 > customer.Balance) {
